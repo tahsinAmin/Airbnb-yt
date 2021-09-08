@@ -4,6 +4,7 @@ import { useRouter} from 'next/dist/client/router'
 import {format} from 'date-fns';
 import { RefreshIcon } from "@heroicons/react/solid";
 import InfoCard from "../components/InfoCard";
+import Map from "../components/Map";
 
 function Search({ searchResults }) {
     const router = useRouter();
@@ -31,6 +32,7 @@ function Search({ searchResults }) {
                    <div className="flex flex-col">
                    {searchResults.map(({ img, location, title, description, star, price, total }) => (
                        <InfoCard
+                        key={img}
                         img={img}
                         location={location}
                         title={title}
@@ -41,6 +43,9 @@ function Search({ searchResults }) {
                        />
                    ))}
                    </div>
+               </section>
+               <section className='hidden xl:inline-flex xl:min-w-[600px]'>
+                   <Map searchResults={searchResults}/>
                </section>
            </main>
            <Footer/>
